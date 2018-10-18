@@ -26,10 +26,10 @@ app.get('/users/:id', function (request, response) {
     var id = request.param('id');
     var sql = 'select * from users';
     if (id){
-            sql += ' where id ='+id +'ORDER BY id ASC';
+            sql += ' where id ='+id ;
     }
     
-    db.any(sql+'ORDER BY id ASC')
+    db.any(sql)
         .then(function(data){
             console.log('DATA:'+data);
             response.render('pages/users',{users : data});
@@ -43,8 +43,8 @@ app.get('/users/:id', function (request, response) {
 });
 app.get('/products/:pid', function (request, response) {
    var pid = request.params.pid;
-   var sql = "select * from products where id=" +pid+"ORDER BY id ASC";
-   db.any(sql+"ORDER BY id ASC")
+   var sql = "select * from products where id=" +pid;
+   db.any(sql)
     .then(function(data){
         response.render('pages/product_edit',{product: data[0]});
     })
@@ -57,9 +57,9 @@ app.get('/products', function (request, response) {
     var id = request.param('id');
     var sql = 'select * from products';
     if (id){
-            sql += ' where id ='+id + "ORDER BY id ASC";
+            sql += ' where id ='+id + 'ORDER BY id ASC';
     }
-    db.any(sql+"ORDER BY id ASC")
+    db.any(sql+'ORDER BY id ASC')
         .then(function(data){
             console.log('DATA:'+data);
             response.render('pages/products',{products : data});
