@@ -79,7 +79,7 @@ app.post('/products/update', function (request, response){
         var price = request.body.price;
         var title = request.body.title;
         var sql = `update products set title ='${title}',price= '${price}'  where id = '${id}'`;
-        db.any(sql)
+        db.query(sql)
         .then(function(data){
             console.log('DATA:'+data);
             response.render('pages/products');
