@@ -89,7 +89,7 @@ app.post('/products/update', function (request, response){
                 
     })
 });
-app.get('/products/delete', function (request, response) {
+app.get('products/delete', function (request, response) {
     var id = request.param('id');
     var sql = 'delete * from users';
     if (id){
@@ -99,7 +99,7 @@ app.get('/products/delete', function (request, response) {
     db.any(sql)
         .then(function(data){
             console.log('DATA:'+data);
-            response.render('pages/users',{users : data});
+            response.render('pages/products',{products : data});
             
         })
         .catch(function(data){
