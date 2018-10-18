@@ -78,24 +78,17 @@ app.post('/products/update', function (request, response){
         var id = request.body.id;
         var price = request.body.price;
         var title = request.body.title;
-        var sql = `update products set title =${title},price= ${price}  where id = ${id}`;
-    //    db.query(sql, (err,data) => {
-    //         if(err) throw err;
-    //         console.log(data);
-    //         res.send('Post updated');
-    //         response.redirect('/products');
-    //     });
-        console.log('UPDATE:'+sql);
-        db.query(sql)
+        var sql = `update products set title ='${title}',price= '${price}'  where id = '${id}'`;
+        db.any(sql)
         .then(function(data){
-            response.send(sql);
-            response.redirect('/products');
+            console.log('DATA:'+data);
+            response.render('pages/products');
+            
         })
         .catch(function(data){
                 console.log('ERROR:'+console.error);
                 
     })
-        
 });
 
 var port = process.env.PORT || 8080;
