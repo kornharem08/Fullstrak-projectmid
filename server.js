@@ -93,19 +93,19 @@ app.get('/product_delete/:pid',function (request, response) {
     var pid = request.params.pid;
     var sql = 'DELETE FROM products';
     response.send(pid);
-    // if (id){
-    //         sql += ' where id ='+ id;
-    // }
-    // db.query(sql)
-    //     .then(function(data){
-    //         console.log('DATA:'+data);
-    //         response.redirect('/products')
+    if (pid){
+            sql += ' where id ='+ pid;
+    }
+    db.query(sql)
+        .then(function(data){
+            console.log('DATA:'+data);
+            response.redirect('/products')
             
-    //     })
-    //     .catch(function(data){
-    //             console.log('ERROR:'+console.error);
+        })
+        .catch(function(data){
+                console.log('ERROR:'+console.error);
                 
-    // })
+    })
  });
  
 
