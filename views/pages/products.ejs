@@ -17,7 +17,7 @@
             <td><%= product.title %></td>
             <td><%= product.price %>></td>
             <td><a class="btn btn-success" href="/products/<%= product.id %>" role="button">EDIT</a></td>
-            <td><a class="btn btn-danger" href="/products/<%= product.id %>" role="button">Delete</a></td>
+            <td><a class="btn btn-danger" href="/products/delete/<%= product.id %>" role="button">Delete</a></td>
     </tr>
     <% }); %>
     </tbody>

@@ -89,25 +89,18 @@ app.post('/products/update', function (request, response){
                 
     })
 });
-app.get('products/delete', function (request, response) {
-    var id = request.param('id');
-    var sql = 'delete * from users';
-    if (id){
-            sql += ' where id ='+id;
-    }
-    
+app.get('/products/delete/:pid', function (request, response) {
+    var pid = request.params.pid;
+    var sql = "delete * from products where id=" +pid;
     db.any(sql)
-        .then(function(data){
-            console.log('DATA:'+data);
-            response.render('pages/products',{products : data});
-            
-        })
-        .catch(function(data){
-                console.log('ERROR:'+console.error);
-                
-    })
-
-});
+     .then(function(data){
+        response.redirect('/products')
+     })
+     .catch(function(data){
+         console.log('ERROR:'+console.error);
+  })
+ });
+ 
 
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
