@@ -17,19 +17,22 @@
 <div class="form-group">
   <label for="">Price</label>
   <input type="number"
-    class="form-control" value=""name="price" id="" aria-describedby="helpId" placeholder="">
+    class="form-control" value="<%=time %>"name="price" id="" aria-describedby="helpId" placeholder="">
   <small id="helpId" class="form-text text-muted">Price</small>
 </div>
-<div class="form-group"> <!-- Date input -->
-    <input id="datepicker" width="276" />
-    <script>
-        $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4'
-        });
-    </script>
-  </div>
+
+<script>
+var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+</script>
+<div class="form-group">
+        <label for="">Price</label>
+        <input type="number"
+          class="form-control" value=""name="price" id="" aria-describedby="helpId" placeholder="">
+        <small id="helpId" class="form-text text-muted">Price</small>
+      </div>
+  <button type="submit" class="btn btn-secondary">Save</button>
 </div>
 
-<button type="submit" class="btn btn-secondary">Save</button>
+
 </form>
  <% include ../partials/footer %>
