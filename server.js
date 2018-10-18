@@ -79,9 +79,9 @@ app.post('/products/update', function (request, response){
         var price = request.body.price;
         var title = request.body.title;
         var sql = `update products set title =${title},price= ${price}  where id = ${id}`;
-       db.query(sql, (err,result) => {
+       db.query(sql, (err,data) => {
             if(err) throw err;
-            console.log(result);
+            console.log(data);
             res.send('Post updated');
             response.redirect('/products');
         });
