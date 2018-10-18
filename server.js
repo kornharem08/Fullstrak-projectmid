@@ -89,7 +89,7 @@ app.post('/products/update', function (request, response){
                 
     })
 });
-app.get('/product_delete/:pid', function (request, response) {
+app.post('/product_delete/:pid',function (request, response) {
     var id = request.param.id;
     var sql = 'DELETE FROM products';
     if (id){
