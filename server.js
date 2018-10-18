@@ -81,16 +81,27 @@ app.post('/products/update', function (request, response){
         var title = request.body.title;
         var sql = `update products set title =${title}, price= ${price}  where id = ${id}`;
         console.log('UPDATE:'+sql);
-        db.query(sql)
-        .then(function(data){
-            response.redirect('/products');
+        db.query(sql,function(err,data) {
+            var result = {};
+            if (err) {
+                connection.release();
+                callback(err, null);
+            } else {
+                connection.release();
+                result = data;
+                callback(null, result);
+            }
+       });
+    //     db.query(sql)
+    //     .then(function(data){
+    //         response.redirect('/products');
        
    
-        })
-        .catch(function(data){
-                console.log('ERROR:'+console.error);
+    //     })
+    //     .catch(function(data){
+    //             console.log('ERROR:'+console.error);
                 
-    })
+    // })
         
 });
 
