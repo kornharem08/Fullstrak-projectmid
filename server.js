@@ -81,9 +81,8 @@ app.post('/products/update', function (request, response){
         var title = request.body.title;
         var sql = `update products set title =${title}, price= ${price}  where id = ${id}`;
         console.log('UPDATE:'+sql);
-        db.any(sql)
+        db.query(sql)
         .then(function(data){
-            response.render('pages/products',{title: title,price : price,id : id});
             response.redirect('/products');
        
    
