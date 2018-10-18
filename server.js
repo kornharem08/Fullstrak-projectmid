@@ -84,7 +84,7 @@ app.get('/products/update', function (request, response){
             console.log(result);
             res.send('Post updated');
             response.redirect('/products');
-        })
+        });
         // console.log('UPDATE:'+sql);
     //     db.query(sql)
     //     .then(function(data){
