@@ -89,6 +89,25 @@ app.post('/products/update', function (request, response){
                 
     })
 });
+app.get('/products/delete', function (request, response) {
+    var id = request.param('id');
+    var sql = 'delete * from users';
+    if (id){
+            sql += ' where id ='+id;
+    }
+    
+    db.any(sql)
+        .then(function(data){
+            console.log('DATA:'+data);
+            response.render('pages/users',{users : data});
+            
+        })
+        .catch(function(data){
+                console.log('ERROR:'+console.error);
+                
+    })
+
+});
 
 var port = process.env.PORT || 8080;
 app.listen(port, function() {
