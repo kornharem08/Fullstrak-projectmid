@@ -26,10 +26,10 @@ app.get('/users/:id', function (request, response) {
     var id = request.param('id');
     var sql = 'select * from users';
     if (id){
-            sql += ' where id ='+id;
+            sql += ' where id ='+id +'order by asc';
     }
     
-    db.any(sql)
+    db.any(sql+'order by asc')
         .then(function(data){
             console.log('DATA:'+data);
             response.render('pages/users',{users : data});
