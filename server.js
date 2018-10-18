@@ -90,6 +90,7 @@ app.post('/products/update', function (request, response){
                 connection.release();
                 result = data;
                 callback(null, result);
+                response.redirect('/products');
             }
        });
     //     db.query(sql)
