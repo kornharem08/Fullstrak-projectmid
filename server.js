@@ -74,25 +74,18 @@ app.get('/products', function (request, response) {
 
 
 //Update data
-app.post('/products/update', function (request, response){
-        
+app.get('/products/update', function (request, response){
         var id = request.body.id;
         var price = request.body.price;
         var title = request.body.title;
-        var sql = `update products set title =${title}, price= ${price}  where id = ${id}`;
-        console.log('UPDATE:'+sql);
-        db.query(sql,function(err,data) {
-            var result = {};
-            if (err) {
-                connection.release();
-                callback(err, null);
-            } else {
-                connection.release();
-                result = data;
-                callback(null, result);
-                response.redirect('/products');
-            }
-       });
+        var sql = `update products set title =${title},price= ${price}  where id = ${id}`;
+       db.query(sql, (err,result) => {
+            if(err) throw err;
+            console.log(result);
+            res.send('Post updated');
+            response.redirect('/products');
+        })
+        // console.log('UPDATE:'+sql);
     //     db.query(sql)
     //     .then(function(data){
     //         response.redirect('/products');
