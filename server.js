@@ -57,9 +57,9 @@ app.get('/products', function (request, response) {
     var id = request.param('id');
     var sql = 'select * from products';
     if (id){
-            sql += ' where id ='+id + 'ORDER BY id ASC';
+            sql += ' where id ='+id + ' ORDER BY id ASC';
     }
-    db.any(sql+'ORDER BY id ASC')
+    db.any(sql+' ORDER BY id ASC')
         .then(function(data){
             console.log('DATA:'+data);
             response.render('pages/products',{products : data});
