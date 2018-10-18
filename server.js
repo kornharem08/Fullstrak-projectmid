@@ -122,8 +122,9 @@ app.post('/products/insert', function (request, response) {
 
         })
 });
-
-
+app.get('/insert', function (request, response) {
+            response.render('pages/insert');
+});
 var port = process.env.PORT || 8080;
 app.listen(port, function () {
     console.log('App is running on http://localhost:' + port);
