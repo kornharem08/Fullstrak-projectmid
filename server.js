@@ -74,7 +74,7 @@ app.get('/products', function (request, response) {
 
 
 //Update data
-app.get('/products/update', function (request, response){
+app.post('/products/update', function (request, response){
         var id = request.body.id;
         var price = request.body.price;
         var title = request.body.title;
