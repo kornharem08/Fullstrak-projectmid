@@ -112,7 +112,6 @@ app.post('/products/insert', function (request, response) {
     var id = request.body.id;
     var price = request.body.price;
     var title = request.body.title;
-    var time = moment().format('MMMM Do YYYY, h:mm:ss a');
     var sql = `INSERT INTO products (id,title,price) VALUES  ('${id}','${title}','${price}')`;
     db.query(sql)
         .then(function (data) {
@@ -125,7 +124,9 @@ app.post('/products/insert', function (request, response) {
         })
 });
 app.get('/insert', function (request, response) {
-            response.render('pages/insert');
+    var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+    response.send(time);
+            // response.render('pages/insert');
 });
 var port = process.env.PORT || 8080;
 app.listen(port, function () {
