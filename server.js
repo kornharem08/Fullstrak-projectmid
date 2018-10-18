@@ -79,23 +79,22 @@ app.post('/products/update', function (request, response){
         var price = request.body.price;
         var title = request.body.title;
         var sql = `update products set title =${title},price= ${price}  where id = ${id}`;
-       db.query(sql, (err,data) => {
-            if(err) throw err;
-            console.log(data);
-            res.send('Post updated');
-            response.redirect('/products');
-        });
-        // console.log('UPDATE:'+sql);
-    //     db.query(sql)
-    //     .then(function(data){
+    //    db.query(sql, (err,data) => {
+    //         if(err) throw err;
+    //         console.log(data);
+    //         res.send('Post updated');
     //         response.redirect('/products');
-       
-   
-    //     })
-    //     .catch(function(data){
-    //             console.log('ERROR:'+console.error);
+    //     });
+        console.log('UPDATE:'+sql);
+        db.query(sql)
+        .then(function(data){
+            response.send(sql);
+            response.redirect('/products');
+        })
+        .catch(function(data){
+                console.log('ERROR:'+console.error);
                 
-    // })
+    })
         
 });
 
