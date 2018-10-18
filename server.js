@@ -84,10 +84,11 @@ app.post('/products/update', function (request, response){
         db.any(sql)
         .then(function(data){
             console.log('DATA:'+data);
+            console.log("Complete");
+            response.send(sql);
             response.redirect('/products');
-        response.send(sql);
-        console.log("Complete");
-            response.redirect('/products');
+       
+   
         })
         .catch(function(data){
                 console.log('ERROR:'+console.error);
