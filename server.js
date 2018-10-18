@@ -90,7 +90,7 @@ app.post('/products/update', function (request, response){
     })
 });
 app.get('/product_delete/:pid',function (request, response) {
-    var id = request.param.pid;
+    var id = request.params.pid;
     var sql = 'DELETE FROM products';
     response.send(id);
     // if (id){
