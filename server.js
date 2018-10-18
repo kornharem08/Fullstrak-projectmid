@@ -81,7 +81,7 @@ app.post('/products/update', function (request, response){
         var sql = `update products set title ='${title}',price= '${price}'  where id = '${id}'`;
         db.query(sql)
         .then(function(data){
-            response.render('pages/products');
+            response.redirect('/products')
             
         })
         .catch(function(data){
