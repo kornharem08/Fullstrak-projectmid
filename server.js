@@ -43,8 +43,8 @@ app.get('/users/:id', function (request, response) {
 });
 app.get('/products/:pid', function (request, response) {
    var pid = request.params.pid;
-   var sql = "select * from products where id=" +pid;
-   db.any(sql)
+   var sql = "select * from products where id=" +pid+"ORDER BY id ASC";
+   db.any(sql+"ORDER BY id ASC")
     .then(function(data){
         response.render('pages/product_edit',{product: data[0]});
     })
