@@ -92,19 +92,20 @@ app.post('/products/update', function (request, response){
 app.get('/product_delete/:pid',function (request, response) {
     var id = request.param.pid;
     var sql = 'DELETE FROM products';
-    if (id){
-            sql += ' where id ='+ id;
-    }
-    db.query(sql)
-        .then(function(data){
-            console.log('DATA:'+data);
-            response.render('pages/products',{products : data});
+    response.send(id);
+    // if (id){
+    //         sql += ' where id ='+ id;
+    // }
+    // db.query(sql)
+    //     .then(function(data){
+    //         console.log('DATA:'+data);
+    //         response.redirect('/products')
             
-        })
-        .catch(function(data){
-                console.log('ERROR:'+console.error);
+    //     })
+    //     .catch(function(data){
+    //             console.log('ERROR:'+console.error);
                 
-    })
+    // })
  });
  
 
