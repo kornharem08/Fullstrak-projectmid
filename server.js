@@ -83,7 +83,7 @@ app.post('/products/update', function (request, response){
         console.log('UPDATE:'+sql);
         db.any(sql)
         .then(function(data){
-            response.render('pages/products',{id : data,title : data,price :data});
+            response.render('pages/products',{title: title,price : price,id : id});
             response.redirect('/products');
        
    
