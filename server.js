@@ -1,7 +1,7 @@
 var express = require('express');
 var pgp = require('pg-promise')();
-// var db = pgp(process.env.DATABASE_URL);
-var db = pgp('postgres://yqiuxqgvnmgbzn:ffd692f86d45ffceb269a06492f38f9cb5f8d6c0666b529b2d46770158cb939d@ec2-54-243-147-162.compute-1.amazonaws.com:5432/d28265d8skcf5j?ssl=true')
+var db = pgp(process.env.DATABASE_URL);
+// var db = pgp('postgres://yqiuxqgvnmgbzn:ffd692f86d45ffceb269a06492f38f9cb5f8d6c0666b529b2d46770158cb939d@ec2-54-243-147-162.compute-1.amazonaws.com:5432/d28265d8skcf5j?ssl=true')
 var app = express();
 var bodyPaser = require('body-parser');
 var moment = require('moment');
