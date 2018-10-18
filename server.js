@@ -90,8 +90,8 @@ app.post('/products/update', function (request, response){
     })
 });
 app.get('/product_delete/:pid', function (request, response) {
-    var id = request.param('id');
-    var sql = 'delete from products';
+    var id = request.param.id;
+    var sql = 'DELETE FROM products';
     if (id){
             sql += ' where id ='+ id;
     }
