@@ -81,8 +81,20 @@ app.post('/products/update', function (request, response){
         var title = request.body.title;
         var sql = `update products set title =${title}, price= ${price}  where id = ${id}`;
         console.log('UPDATE:'+sql);
-        response.redirect('/products');
         response.send(sql);
+    //     db.any(sql)
+    //     .then(function(data){
+    //         console.log('DATA:'+data);
+    //         response.redirect('/products');
+    //     response.send(sql);
+    //     console.log("Complete");
+    //         response.redirect('/products');
+    //     })
+    //     .catch(function(data){
+    //             console.log('ERROR:'+console.error);
+                
+    // })
+        
 });
 
 var port = process.env.PORT || 8080;
