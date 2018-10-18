@@ -125,8 +125,7 @@ app.post('/products/insert', function (request, response) {
 });
 app.get('/insert', function (request, response) {
     var time = moment().format('MMMM Do YYYY, h:mm:ss a');
-    response.send(time);
-            // response.render('pages/insert');
+            response.render('pages/insert');
 });
 var port = process.env.PORT || 8080;
 app.listen(port, function () {
