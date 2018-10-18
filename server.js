@@ -91,7 +91,6 @@ app.post('/products/update', function (request, response){
 });
 app.get('/product_delete/:pid',function (request, response) {
     var id = request.param.pid;
-    response.send(id);
     var sql = 'DELETE FROM products';
     if (id){
             sql += ' where id ='+ id;
