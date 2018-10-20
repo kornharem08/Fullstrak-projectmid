@@ -111,6 +111,18 @@ app.post('/users/update', function (request, response) {
 
         })
 });
+app.get('/users/:id', function (request, response) {
+    var id = request.params.id;
+    var times = moment().format('MMMM Do YYYY, h:mm:ss a');
+    var sql = "select * from users where id=" + id;
+    db.any(sql)
+        .then(function (data) {
+            response.render('pages/users_edit', { users: data[0],time: times});
+        })
+        .catch(function (data) {
+            console.log('ERROR:' + console.error);
+        })
+});
 
 
 app.get('/products/:pid', function (request, response) {
