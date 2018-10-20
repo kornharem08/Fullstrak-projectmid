@@ -60,6 +60,25 @@ app.get('/users/:id', function (request, response) {
         })
 
 });
+app.get('/insert_user', function (request, response) {
+    var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+    response.render('pages/insert_user', { time: time});
+});
+app.post('/users/insert_user', function (request, response) {
+    var id = request.body.id;
+    var email = request.body.email;
+    var password = request.body.password;
+    var sql = `INSERT INTO products (id,title,price) VALUES  ('${id}','${email}','${password}')`;
+    db.query(sql)
+        .then(function (data) {
+            response.redirect('/users')
+
+        })
+        .catch(function (data) {
+            console.log('ERROR:' + console.error);
+
+        })
+});
 app.get('/products/:pid', function (request, response) {
     var pid = request.params.pid;
     var times = moment().format('MMMM Do YYYY, h:mm:ss a');
