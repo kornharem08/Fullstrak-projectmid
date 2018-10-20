@@ -117,7 +117,7 @@ app.get('/users/:id', function (request, response) {
     var sql = "select * from users where id=" + id;
     db.any(sql)
         .then(function (data) {
-            response.render('pages/users_edit', { users: data[0],time: times});
+            response.render('pages/users_edit', { user: data[0],time: times});
         })
         .catch(function (data) {
             console.log('ERROR:' + console.error);
