@@ -79,6 +79,23 @@ app.post('/users/insert_user', function (request, response) {
 
         })
 });
+app.get('/users_delete/:id', function (request, response) {
+    var id = request.params.id;
+    var sql = 'DELETE FROM users';
+    if (id) {
+        sql += ' where id =' + id;
+    }
+    db.query(sql)
+        .then(function (data) {
+            console.log('DATA:' + data);
+            response.redirect('/users')
+
+        })
+        .catch(function (data) {
+            console.log('ERROR:' + console.error);
+
+        })
+});
 app.get('/products/:pid', function (request, response) {
     var pid = request.params.pid;
     var times = moment().format('MMMM Do YYYY, h:mm:ss a');
