@@ -96,6 +96,23 @@ app.get('/users_delete/:id', function (request, response) {
 
         })
 });
+app.post('/users/update', function (request, response) {
+    var id = request.body.id;
+    var email = request.body.email;
+    var password = request.body.password;
+    var sql = `update users set email ='${email}',password= '${password}'  where id = '${id}'`;
+    db.query(sql)
+        .then(function (data) {
+            response.redirect('/users')
+
+        })
+        .catch(function (data) {
+            console.log('ERROR:' + console.error);
+
+        })
+});
+
+
 app.get('/products/:pid', function (request, response) {
     var pid = request.params.pid;
     var times = moment().format('MMMM Do YYYY, h:mm:ss a');
