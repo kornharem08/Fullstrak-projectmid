@@ -41,25 +41,6 @@ app.get('/users', function (request, response) {
 
 });
 
-app.get('/users/:id', function (request, response) {
-    var id = request.param('id');
-    var sql = 'select * from users';
-    if (id) {
-        sql += ' where id =' + id;
-    }
-
-    db.any(sql)
-        .then(function (data) {
-            console.log('DATA:' + data);
-            response.render('pages/users', { users: data });
-
-        })
-        .catch(function (data) {
-            console.log('ERROR:' + console.error);
-
-        })
-
-});
 app.get('/insert_user', function (request, response) {
     var time = moment().format('MMMM Do YYYY, h:mm:ss a');
     response.render('pages/insert_user', { time: time});
