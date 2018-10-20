@@ -22,6 +22,24 @@ app.get('/about', function (request, response) {
     var bdate = '19/05/1997';
     response.render('pages/about', { fullname: name, hobbies: hobbie, bdate: bdate });
 });
+app.get('/users', function (request, response) {
+    var id = request.param('id');
+    var sql = 'select * from users';
+    if (id) {
+        sql += ' where id =' + id + ' ORDER BY id ASC';
+    }
+    db.any(sql + ' ORDER BY id ASC')
+        .then(function (data) {
+            console.log('DATA:' + data);
+            response.render('pages/users', { users: data });
+
+        })
+        .catch(function (data) {
+            console.log('ERROR:' + console.error);
+
+        })
+
+});
 
 app.get('/users/:id', function (request, response) {
     var id = request.param('id');
