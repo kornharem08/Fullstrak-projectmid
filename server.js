@@ -207,6 +207,20 @@ app.get('/Report_product', function(req, res) {
         console.log('ERROR' + error);
     })
 });
+
+app.get('/Report_user', function(req, res) {
+    var sql='select purchases.user_id,purchases.name,users.email,sum(purchase_items.price) as price from purchases inner join users on users.user_id=purchases.user_id inner join purchase_items on purchase_items.purchase_id=purchases.purchase_id group by purchases.user_id,purchases.name,users.email order by sum(purchase_items.price) desc LIMIT 25;'
+    db.any(sql)
+        .then(function (data) 
+        {
+            // console.log('DATA' + data);
+            res.render('pages/Report_user', { user : data });
+        })
+        .catch(function (data) 
+        {
+            console.log('ERROR' + error);
+        })
+});
 var port = process.env.PORT || 8080;
 app.listen(port, function () {
     console.log('App is running on http://localhost:' + port);
