@@ -26,7 +26,7 @@ app.get('/users', function (request, response) {
     var id = request.param('id');
     var sql = 'select * from users';
     if (id) {
-        sql += ' where id =' + id + ' ORDER BY id ASC';
+        sql += ' where user_id =' + id + ' ORDER BY id ASC';
     }
     db.any(sql + ' ORDER BY id ASC')
         .then(function (data) {
@@ -49,7 +49,7 @@ app.post('/users/insert_user', function (request, response) {
     var id = request.body.id;
     var email = request.body.email;
     var password = request.body.password;
-    var sql = `INSERT INTO users (id,email,password) VALUES ('${id}','${email}','${password}')`;
+    var sql = `INSERT INTO users (user_id,email,password) VALUES ('${id}','${email}','${password}')`;
     db.query(sql)
         .then(function (data) {
             response.redirect('/users')
@@ -64,7 +64,7 @@ app.get('/users_delete/:id', function (request, response) {
     var id = request.params.id;
     var sql = 'DELETE FROM users';
     if (id) {
-        sql += ' where id =' + id;
+        sql += ' where user_id =' + id;
     }
     db.query(sql)
         .then(function (data) {
@@ -81,7 +81,7 @@ app.post('/users/update', function (request, response) {
     var id = request.body.id;
     var email = request.body.email;
     var password = request.body.password;
-    var sql = `update users set email ='${email}',password= '${password}'  where id = '${id}'`;
+    var sql = `update users set email ='${email}',password= '${password}'  where user_id = '${id}'`;
     db.query(sql)
         .then(function (data) {
             response.redirect('/users')
@@ -95,7 +95,7 @@ app.post('/users/update', function (request, response) {
 app.get('/users/:id', function (request, response) {
     var id = request.params.id;
     var times = moment().format('MMMM Do YYYY, h:mm:ss a');
-    var sql = "select * from users where id=" + id;
+    var sql = "select * from users where user_id=" + id;
     db.any(sql)
         .then(function (data) {
             response.render('pages/users_edit', { user: data[0],time: times});
@@ -109,7 +109,7 @@ app.get('/users/:id', function (request, response) {
 app.get('/products/:pid', function (request, response) {    
     var pid = request.params.pid;
     var times = moment().format('MMMM Do YYYY, h:mm:ss a');
-    var sql = "select * from products where id=" + pid;
+    var sql = "select * from products where product_id=" + pid;
     db.any(sql)
         .then(function (data) {
             response.render('pages/product_edit', { product: data[0],time: times});
@@ -123,7 +123,7 @@ app.get('/products', function (request, response) {
     var id = request.param('id');
     var sql = 'select * from products';
     if (id) {
-        sql += ' where id =' + id + ' ORDER BY id ASC';
+        sql += ' where product_id =' + id + ' ORDER BY id ASC';
     }
     db.any(sql + ' ORDER BY id ASC')
         .then(function (data) {
@@ -144,7 +144,7 @@ app.post('/products/update', function (request, response) {
     var id = request.body.id;
     var price = request.body.price;
     var title = request.body.title;
-    var sql = `update products set title ='${title}',price= '${price}'  where id = '${id}'`;
+    var sql = `update products set title ='${title}',price= '${price}'  where product_id = '${id}'`;
     db.query(sql)
         .then(function (data) {
             response.redirect('/products')
@@ -159,7 +159,7 @@ app.get('/product_delete/:pid', function (request, response) {
     var pid = request.params.pid;
     var sql = 'DELETE FROM products';
     if (pid) {
-        sql += ' where id =' + pid;
+        sql += ' where product_id =' + pid;
     }
     db.query(sql)
         .then(function (data) {
@@ -177,7 +177,7 @@ app.post('/products/insert', function (request, response) {
     var id = request.body.id;
     var price = request.body.price;
     var title = request.body.title;
-    var sql = `INSERT INTO products (id,title,price) VALUES  ('${id}','${title}','${price}')`;
+    var sql = `INSERT INTO products (product_id,title,price) VALUES  ('${id}','${title}','${price}')`;
     db.query(sql)
         .then(function (data) {
             response.redirect('/products')
