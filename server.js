@@ -120,7 +120,7 @@ app.get('/products/:pid', function (request, response) {
 });
 
 app.get('/products', function (request, response) {
-    var id = request.param('product_id');
+    var id = request.param('id');
     var sql = 'select * from products';
     if (id) {
         sql += ' where product_id =' + id + ' ORDER BY product_id ASC';
