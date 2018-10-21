@@ -120,12 +120,12 @@ app.get('/products/:pid', function (request, response) {
 });
 
 app.get('/products', function (request, response) {
-    var id = request.param('id');
+    var id = request.param('product_id');
     var sql = 'select * from products';
     if (id) {
-        sql += ' where product_id =' + id + ' ORDER BY id ASC';
+        sql += ' where product_id =' + id + ' ORDER BY product_id ASC';
     }
-    db.any(sql + ' ORDER BY id ASC')
+    db.any(sql + ' ORDER BY product_id ASC')
         .then(function (data) {
             console.log('DATA:' + data);
             response.render('pages/products', { products: data });

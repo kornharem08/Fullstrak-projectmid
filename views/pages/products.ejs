@@ -29,12 +29,12 @@
     <tbody id="myTable">
     <% products.forEach(function(product){ %>
         <tr>
-            <td scope ="row"><%= product.id %></td>
+            <td scope ="row"><%= product.product_id %></td>
             <td><%= product.title %></td>
             <td><%= product.price %></td>
-            <td><a class="btn btn-success" href="/products/<%= product.id %>" role="button">EDIT</a></td>
+            <td><a class="btn btn-success" href="/products/<%= product.product_id %>" role="button">EDIT</a></td>
             
-            <td><a class="btn btn-danger" href="/product_delete/<%= product.id %>" role="button">Delete</a></td>
+            <td><a class="btn btn-danger" href="/product_delete/<%= product.product_id %>" role="button">Delete</a></td>
     </tr>
     <% }); %>
     </tbody>
