@@ -106,7 +106,7 @@ app.get('/users/:id', function (request, response) {
 });
 
 
-app.get('/products/:pid', function (request, response) {
+app.get('/products/:pid', function (request, response) {    
     var pid = request.params.pid;
     var times = moment().format('MMMM Do YYYY, h:mm:ss a');
     var sql = "select * from products where id=" + pid;
@@ -191,6 +191,21 @@ app.post('/products/insert', function (request, response) {
 app.get('/insert', function (request, response) {
     var time = moment().format('MMMM Do YYYY, h:mm:ss a');
     response.render('pages/insert', { time: time});
+});
+
+app.get('/Report_product', function(req, res) {
+    var sql ='select products.product_id,products.title,sum(purchase_items.quantity) as quantity,sum(purchase_items.price) as price from products inner join purchase_items on purchase_items.product_id=products.product_id group by products.product_id;select sum(quantity) as squantity,sum(price) as sprice from purchase_items';
+    db.multi(sql)
+    .then(function  (data) 
+    {
+ 
+        // console.log('DATA' + data);
+        res.render('pages/Report_product', { product: data[0],sum: data[1]});
+    })
+    .catch(function (data) 
+    {
+        console.log('ERROR' + error);
+    })
 });
 var port = process.env.PORT || 8080;
 app.listen(port, function () {
