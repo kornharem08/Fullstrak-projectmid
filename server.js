@@ -49,7 +49,7 @@ app.post('/users/insert_user', function (request, response) {
     var id = request.body.id;
     var email = request.body.email;
     var password = request.body.password;
-    var sql = `INSERT INTO users (user_id,email,password) VALUES ('${id}','${email}','${password}')`;
+    var sql = `INSERT INTO "public"."products" (title,price) VALUES('${email}','${password}');`;
     db.query(sql)
         .then(function (data) {
             response.redirect('/users')
