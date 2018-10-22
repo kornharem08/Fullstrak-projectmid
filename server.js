@@ -180,6 +180,7 @@ app.post('/products/insert', function (request, response) {
     var price = request.body.price;
     var time = request.body.time;
     var sql = `INSERT INTO "public"."products" (title,price,created_at) VALUES('${title}','${price}','${time}');`;
+    response.send(sql)
     db.query(sql)
         .then(function (data) {
             response.redirect('/products')
