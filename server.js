@@ -175,11 +175,11 @@ app.get('/product_delete/:pid', function (request, response) {
 });
 
 app.post('/products/insert', function (request, response) {
-
-    var price = request.body.price;
+ 
     var title = request.body.title;
+    var price = request.body.price;
     var time = request.body.time;
-    var sql = `INSERT INTO "public"."products" (price,title,created_at) VALUES('${price}','${title}','${time}');`;
+    var sql = `INSERT INTO "public"."products" (title,price,created_at) VALUES('${title}','${price}','${time}');`;
     db.query(sql)
         .then(function (data) {
             response.redirect('/products')
@@ -190,6 +190,26 @@ app.post('/products/insert', function (request, response) {
 
         })
 });
+
+// app.post('/products/insert_product', function (req, res) {
+  
+//     var title = req.body.title;
+//     var price = req.body.price;
+//     var time = req.body.time;
+//     var sql = `INSERT INTO "public"."products" (title,price,created_at) VALUES('${title}','${price}','${time}');`;
+    
+//     //db.none
+//     console.log('UPDATE:' + sql);
+//     db.any(sql)
+//         .then(function (data) {
+//             console.log('DATA:' + data);
+//             res.redirect('/products')
+//         })
+
+//         .catch(function (error) {
+//             console.log('ERROR:' + error);
+//         })
+// });
 app.get('/insert', function (request, response) {
     var time = moment().format();
     response.render('pages/insert', { time: time});
