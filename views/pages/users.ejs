@@ -1,7 +1,7 @@
 <% include ../partials/header %>
 <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
-            <p>Type something in the input field to search the table for id, Title names or Price</p>
+      
         <div id="imaginary_container"> 
             <div class="input-group stylish-input-group">
                 <input type="text" id="myInput" class="form-control"  placeholder="Search" >
@@ -12,9 +12,43 @@
                 </span>
             </div>
         </div>
+        <p>Type something in the input field to search the table for Email  or Password</p>
     </div>
 </div>
-<table class = "table">
+
+<div class="card mb-3" id ="headertop">
+        <div class="card-header">
+          <i class="fas fa-table"></i>
+          Data Table Example</div>
+        <div class="card-body">
+                <table class = "table" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                    <td>ID</td>
+                                    <td>email</td>
+                                    <td>password</td>
+                                    <td><a class="btn btn-success" href="/insert_user" role="button">Add New</a></td>
+                                    </tr>
+                            </thead>
+                                <tbody id="myTable">
+                                <% users.forEach(function(user){ %>
+                                    <tr>
+                                        <td scope ="row"><%= user.user_id %></td>
+                                        <td><%= user.email %></td>
+                                        <td><%= user.password %></td>
+                                        <td><a class="btn btn-success" href="/users/<%= user.user_id %>" role="button">EDIT</a></td>
+                                        
+                                        <td><a class="btn btn-danger" href="/users_delete/<%= user.user_id %>" role="button">Delete</a></td>
+                                </tr>
+                                <% }); %>
+                                </tbody>
+                                </table>
+          </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      </div>
+
+<!-- <table class = "table">
     <thead>
         <tr>
         <td>ID</td>
@@ -35,7 +69,7 @@
     </tr>
     <% }); %>
     </tbody>
-    </table>
+    </table> -->
     <script>
         $(document).ready(function(){
           $("#myInput").on("keyup", function() {
@@ -61,6 +95,9 @@
 .stylish-input-group button{
     border:0;
     background:transparent;
+}
+#headertop{
+    margin-top: 15px;
 }
         </style>
 
