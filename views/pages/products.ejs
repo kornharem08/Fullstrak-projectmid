@@ -17,28 +17,42 @@
 <!-- <form class="form-inline my-2 my-lg-0">
 <input class="form-control" id="myInput" type="text" placeholder="Search..">
 </form> -->
-<table class = "table">
-    <thead>
-        <tr>
-        <td>ID</td>
-        <td>Title</td>
-        <td>Price</td>
-        <td><a class="btn btn-success" href="/insert" role="button">Add New</a></td>
-        </tr>
-</thead>
-    <tbody id="myTable">
-    <% products.forEach(function(product){ %>
-        <tr>
-            <td scope ="row"><%= product.product_id %></td>
-            <td><%= product.title %></td>
-            <td><%= product.price %></td>
-            <td><a class="btn btn-success" href="/products/<%= product.product_id %>" role="button">EDIT</a></td>
-            
-            <td><a class="btn btn-danger" href="/product_delete/<%= product.product_id %>" role="button">Delete</a></td>
-    </tr>
-    <% }); %>
-    </tbody>
-    </table>
+<div class="card mb-3">
+    <div class="card-header">
+      <i class="fas fa-table"></i>
+      Data Table Example</div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class = "table">
+            <thead>
+                <tr>
+                <td>ID</td>
+                <td>Title</td>
+                <td>Price</td>
+                <td><a class="btn btn-success" href="/insert" role="button">Add New</a></td>
+                </tr>
+        </thead>
+            <tbody id="myTable">
+            <% products.forEach(function(product){ %>
+                <tr>
+                    <td scope ="row"><%= product.product_id %></td>
+                    <td><%= product.title %></td>
+                    <td><%= product.price %></td>
+                    <td><a class="btn btn-success" href="/products/<%= product.product_id %>" role="button">EDIT</a></td>
+                    
+                    <td><a class="btn btn-danger" href="/product_delete/<%= product.product_id %>" role="button">Delete</a></td>
+            </tr>
+            <% }); %>
+            </tbody>
+            </table>
+      </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+  </div>
+
+
+
+
     <script>
         $(document).ready(function(){
           $("#myInput").on("keyup", function() {
