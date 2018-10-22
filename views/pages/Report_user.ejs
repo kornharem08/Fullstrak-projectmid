@@ -1,24 +1,32 @@
 <% include ../partials/header %>
-&nbsp;
-<h1 class="text-center">Report:Top 25 Customers by Sales</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Customers ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Total Sales</th>
-        </tr>
-    </thead>
-    <tbody>
-    <% user.forEach(function(user) { %>
-        <tr>
-            <td scope="row"><%= user.user_id %></td>
-            <td><%= user.name %></td>
-            <td><%= user.email %></td>
-            <td>$<%= user.price %></td>
-        </tr>
-        <% }); %>
-    </tbody>
-</table>
+<h3 class="text-center">Top 25 Customers by Sales</h3>
+<div class="card mb-3" id="headertop">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Report Table user</div>
+        <div class="card-body">
+            <table class="table" width="100%" cellspacing="0">
+                    <thead>
+                            <tr>
+                                <th><b>Customers ID</b>></th>
+                                <th><b>Name</b>></th>
+                                <th><b>Email</b>></th>
+                                <th><b>Total Sales</b>></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <% user.forEach(function(user) { %>
+                            <tr>
+                                <td scope="row"><%= user.user_id %></td>
+                                <td><%= user.name %></td>
+                                <td><%= user.email %></td>
+                                <td>$<%= user.price %></td>
+                            </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>
  <% include ../partials/footer %>
