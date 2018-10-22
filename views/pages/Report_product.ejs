@@ -17,90 +17,65 @@
                 </tr>
             </thead>
             <tbody>
-                
-                <% 
-                var quantities = [] 
-       var labels = [] 
-       var price = []
-    
-       products.forEach(function(product) {
-       quantities.push(product.quantity)
-       labels.push("'" + product.title + "'")
-       price.push(product.price) 
-       
-       { %>
-                <tr>
-                    <td scope="row">
-                        <%= product.title %>
-                        
-                    </td>
-                    <td>
-                        <%= product.quantity %>
-                   
-                    </td>
-                    <td>
-                        <%= product.price %>
-                       
-                    </td>
-                </tr>
-                <% }); %>
-                <% sum.forEach(function(sum) { %>
-                <tr>
-                    <td scope="row">Total</td>
-                    <td id="quantity">
-                        <%= sum.squantity %>
-                    </td>
-                    <td id="price">$
-                        <%= sum.sprice %>
-                    </td>
-                </tr>
-                <% }); %>
-            </tbody>
-        </table>
+                <% product.forEach(function(product) { %>
+                    <tr>
+                        <td scope="row"><%= product.title %></font></td>
+                        <td><%= product.quantity %></font></td>
+                        <td><%= product.price %></font></td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
     </div>
 </div>
 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>     
+<div><canvas id="bar-chart" width="800" height="450"></canvas></div>
 
 
-</div>
+<script>
+<%
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
-<script src="path/to/chartjs/dist/Chart.js"></script>
-<h1> Quantities Product </h1>
-            
-                <canvas id="myChart" width="100" height="100"></canvas>
-                
-                <script>
-                        var ctx = document.getElementById("myChart");
-                        var myChart = new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: [<%- labels %>],
-                                datasets: [{
-                                    label: ' quantities',
-                                    data:[<%= quantities %>],
-                                    backgroundColor: [
-                                        
-                                        
-                                    ],
-                                    borderColor: [
-                                    
-                                        
-                                    ],
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    yAxes: [{
-                                        ticks: {
-                                            beginAtZero:true
-                                        }
-                                    }]
-                                }
-                            }
-                        });
-                        </script>
-                     
-            </div>
+ 
+var labelss=[]
+var data=[]
+var color=[]
+product.forEach(function(product) { 
+    var colors =getRandomColor()
+    labelss.push("'" + product.title + "'");
+    color.push("'" +colors + "'");
+    data.push(product.price);
+}); %>
+
+new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels:[<%-labelss%>], 
+      
+      datasets:[{
+          label: "Products",
+                backgroundColor: [<%-color%>],   
+          data:  [<%=data%>]
+        }]
+      
+     
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+});
+</script>
 
 <% include ../partials/footer %>
