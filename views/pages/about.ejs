@@ -1,8 +1,22 @@
 <% include ../partials/header %>
 
-    <h1><%= fullname %></h1>
+    <!-- <h1><%= fullname %></h1>
 <% hobbies.forEach(function(hobbies) { %>
         <li><%= hobbies %></li>
     <% }); %>
-<h3><%= bdate %></h3>
+<h3><%= bdate %></h3> -->
+<div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3"><%= fullname %></h1>
+            <p class="lead">5930213034 software engineering</p>
+            <hr class="my-2">
+            <% hobbies.forEach(function(hobbies) { %>
+                <li><%= hobbies %></li>
+            <% }); %>
+        <h3><%= bdate %></h3>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="about" role="button">View</a>
+            </p>
+        </div>
+    </div>
  <% include ../partials/footer %>
