@@ -42,14 +42,15 @@ app.get('/users', function (request, response) {
 });
 
 app.get('/insert_user', function (request, response) {
-    var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+    var time = moment().format();
     response.render('pages/insert_user', { time: time});
 });
 app.post('/users/insert_user', function (request, response) {
     var id = request.body.id;
     var email = request.body.email;
     var password = request.body.password;
-    var sql = `INSERT INTO "public"."users" (email,password) VALUES('${email}','${password}');`;
+    var time = request.body.time;
+    var sql = `INSERT INTO "public"."users" (email,password,created_at) VALUES('${email}','${password}','${time}');`;
     db.query(sql)
         .then(function (data) {
             response.redirect('/users')
