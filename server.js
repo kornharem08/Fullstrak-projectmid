@@ -46,7 +46,7 @@ app.get('/insert_user', function (request, response) {
     response.render('pages/insert_user', { time: time});
 });
 app.post('/users/insert_user', function (request, response) {
-    var id = request.body.id;
+   
     var email = request.body.email;
     var password = request.body.password;
     var time = request.body.time;
@@ -175,10 +175,11 @@ app.get('/product_delete/:pid', function (request, response) {
 });
 
 app.post('/products/insert', function (request, response) {
-    var id = request.body.id;
+
     var price = request.body.price;
     var title = request.body.title;
-    var sql = `INSERT INTO products (product_id,title,price) VALUES  ('${id}','${title}','${price}')`;
+    var time = request.body.time;
+    var sql =  `INSERT INTO "public"."products" (price,title,created_at) VALUES('${price}','${title}','${time}');`;
     db.query(sql)
         .then(function (data) {
             response.redirect('/products')
