@@ -60,6 +60,19 @@
           });
         });
         </script>
+        
+<script>
+        var selectedUser = 0;
+        function deleteUser(id){
+            console.log(id);
+            selectedUser = id;
+            $('#exampleModalCenter').modal('show')
+        }
+        function confirmDelete(){
+            console.log('confirm:'+selectedUser);
+            window.location.href = '/product_delete/'+selectedUser;
+        }        
+    </script>
         <style>
             #imaginary_container{
     margin-top:5%; /* Don't copy this */
