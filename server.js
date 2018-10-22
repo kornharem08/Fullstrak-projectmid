@@ -191,7 +191,7 @@ app.post('/products/insert', function (request, response) {
         })
 });
 app.get('/insert', function (request, response) {
-    var time = moment().format('MMMM Do YYYY, h:mm:ss a');
+    var time = moment().format();
     response.render('pages/insert', { time: time});
 });
 
